@@ -1,0 +1,51 @@
+
+#FamilyFoundSection .status label {
+  padding: 10px 5px;
+}
+
+#FamilyFoundSection ul.todos {
+  list-style: none;
+}
+
+#FamilyFoundSection label.type {
+  margin-right: 5px;
+  font-style: italic;
+  color: black;
+}
+
+#FamilyFoundSection span.title {
+  min-width: 300px;
+  display: inline-block;
+}
+
+#FamilyFoundSection label {
+  display: inline-block;
+}
+
+#FamilyFoundSection li.done {
+  font-style: italic;
+  color: #aaa;
+}
+
+#FamilyFoundSection li.todo .right-side {
+  float: right;
+}
+
+#FamilyFoundSection li.todo button.delete {
+  visibility: hidden;
+}
+
+#FamilyFoundSection li.todo:hover button.delete {
+  visibility: visible;
+}
+
+#FamilyFoundSection button.delete {
+  border-radius: 6px;
+  border: 1px solid #999;
+  background-color: #fff;
+  padding: 2px;
+  height: 18px;
+  line-height: 0px;
+  font-weight: bold;
+  display: inline-block;
+}

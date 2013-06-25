@@ -1,0 +1,23 @@
+{
+  "name": "chrome-ext",
+  "repo": "familyfound/chrome-ext",
+  "description": "The Chrome extension for FamilyFound",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "familyfound/promise": "*",
+    "jabapyth/angularjs": "*",
+    "visionmedia/superagent": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js",
+    "todo-tpl.js",
+    "template.js"
+  ],
+  "styles": [
+    "chrome-ext.css"
+  ]
+}

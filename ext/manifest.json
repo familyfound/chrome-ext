@@ -1,0 +1,45 @@
+{
+  "name": "FamilyFound",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Streamlining Family History Research",
+  "homepage_url": "http://familyfound.herokuapp.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "scripts": [
+      "src/bg/background.js"
+    ],
+    "persistent": true
+  },
+  "options_page": "src/options_custom/index.html",
+  "page_action": {
+    "default_icon": "icons/icon19.png",
+    "default_title": "FamilyFound",
+    "default_popup": "src/page_action/page_action.html"
+  },
+  "permissions": [
+    "tabs",
+    "https://familysearch.org/*",
+    "http://familyfound.local:3000/*",
+    "http://familyfound.herokuapp.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://familysearch.org/tree/*"
+      ],
+      "css": [
+        "src/inject/inject.css"
+      ],
+      "js": [
+        "src/inject/inject.js",
+        "src/inject/main.js"
+      ]
+    }
+  ]
+}

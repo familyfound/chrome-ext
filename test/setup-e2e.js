@@ -1,6 +1,10 @@
 
 var angular = require('angularjs')
-  , chromeExt = require('chrome-ext');
+  , chromeExt = require('chrome-ext')
+
+  , log = require('domlog');
+
+log.init();
 
 angular.module('test', ['familyfound'])
   .factory('person', function () {
@@ -29,7 +33,7 @@ angular.module('test', ['familyfound'])
   })
   .factory('ffApi', function () {
     return function (name, params, next) {
-      console.log('call made', name, params, next);
+      log('call made', name, params, next);
       if (name == 'todos/add') {
         setTimeout(function () {
           next({id: '234tre'});

@@ -6,15 +6,17 @@
   "keywords": [],
   "dependencies": {
     "familyfound/promise": "*",
+    "familyfound/todo": "*",
     "jabapyth/angularjs": "*",
     "visionmedia/superagent": "*"
   },
-  "development": {},
+  "development": {
+    "familyfound/domlog": "*"
+  },
   "license": "MIT",
   "main": "index.js",
   "scripts": [
     "index.js",
-    "todo-tpl.js",
     "template.js"
   ],
   "styles": [

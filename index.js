@@ -2,8 +2,8 @@
 var angular = require('angularjs')
   , request = require('superagent')
   , promise = require('promise')
+  , todo = require('todo')
 
-  , todoTpl = require('./todo-tpl')
   , template = require('./template');
 
 function inject(personId, parentDiv, app) {
@@ -44,11 +44,11 @@ function hashChange() {
   }
 }
 
-var homepage = 'http://familyfound.local:3000/';
+var homepage = 'https://familyfound.herokuapp.com/';
 
 var todoTypes = ['General', 'Find Record', 'Resolve Duplicates', 'Find Children'];
 
-angular.module('familyfound', [])
+angular.module('familyfound', ['todo'])
 
   .factory('authorize', function () {
     var sessionid = null;
@@ -71,37 +71,6 @@ angular.module('familyfound', [])
           if (err) { return console.error('failed in ff api', url, options, err); }
           next && next(res.body);
         });
-    };
-  })
-
-  .directive('todo', function (ffApi) {
-    return {
-      scope: {},
-      replace: false,
-      restrict: 'A',
-      template: todoTpl,
-      link: function (scope, element, attrs) {
-        var name = attrs.todo;
-        scope.$parent.$watch(name, function(value) {
-          scope.todo = value;
-        });
-        scope.$watch('todo', function(value) {
-          scope.$parent[name] = value;
-        });
-        scope.$watch('todo.watching', function (value, old) {
-          if (value === old) return;
-          var url = value ? 'watch' : 'unwatch';
-          ffApi('todos/' + url, {id: scope.todo._id});
-        });
-        scope.$watch('todo.done', function (value, old) {
-          if (value === old) return;
-          var url = value ? 'done' : 'undone';
-          ffApi('todos/' + url, {id: scope.todo._id});
-        });
-        element.find('button')[0].addEventListener('click', function () {
-          scope.$parent.removeTodo(scope.todo);
-        });
-      }
     };
   })
 

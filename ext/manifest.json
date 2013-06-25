@@ -26,7 +26,7 @@
     "tabs",
     "https://familysearch.org/*",
     "http://familyfound.local:3000/*",
-    "http://familyfound.herokuapp.com/*"
+    "https://familyfound.herokuapp.com/*"
   ],
   "content_scripts": [
     {

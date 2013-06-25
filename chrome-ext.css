@@ -12,50 +12,8 @@
   margin: 0;
 }
 
-#FamilyFoundSection label.type {
-  margin-right: 20px;
-  font-style: italic;
-  color: black;
-}
-
-#FamilyFoundSection span.title {
-  min-width: 300px;
-  display: inline-block;
-}
-
 #FamilyFoundSection label {
   display: inline-block;
-}
-
-#FamilyFoundSection li.done label,
-#FamilyFoundSection li.done {
-  font-style: italic;
-  color: #aaa;
-}
-
-#FamilyFoundSection li.todo .right-side {
-  float: right;
-}
-
-#FamilyFoundSection li.todo {
-  padding: 5px 0 2px 10px;
-  border-radius: 5px;
-}
-
-#FamilyFoundSection li.todo:hover {
-  background-color: #eee;
-}
-
-#FamilyFoundSection li.todo button.delete {
-  visibility: hidden;
-}
-
-#FamilyFoundSection li.todo label.watch {
-  padding-right: 10px;
-}
-
-#FamilyFoundSection li.todo:hover button.delete {
-  visibility: visible;
 }
 
 #FamilyFoundSection button.delete {

@@ -2,16 +2,10 @@
 default: build
 	@:
 
-build: index.js chrome-ext.css template.js todo-tpl.js
+build: index.js chrome-ext.css template.js
 	@echo "Component"
 	@component build --dev
 	cp build/build.js ext/src/inject/inject.js && cp build/build.css ext/src/inject/inject.css
-
-todo-tpl.js: todo-tpl.html
-	@component convert $<
-
-todo-tpl.html: todo.jade
-	@jade -P < $< > todo-tpl.html
 
 template.html: template.jade
 	@jade -P $<

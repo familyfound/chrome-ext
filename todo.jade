@@ -1,8 +1,8 @@
+.right-side
+  label.watch(ng-hide='todo.owned')
+    span watch
+    input.toggle(title='watch', type='checkbox', ng-model='todo.watching')
+  button.delete(ng-show='todo.owned') remove
 input.toggle(type='checkbox', ng-model='todo.done')
 label.type {{todo.type}}
 span.title {{todo.title}}
-.right-side
-  label
-    span Watch
-    input.toggle(title='watch', type='checkbox', ng-model='todo.watching')
-  button.delete(ng-show='todo.owned') &times;

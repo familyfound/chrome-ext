@@ -5,3 +5,5 @@ build
 .#*
 template.html
 todo-tpl.html
+ext/src/inject/inject.js
+ext/src/inject/inject.css

@@ -25,4 +25,7 @@ components: component.json
 clean:
 	rm -fr build components template.js
 
-.PHONY: clean
+example:
+	@open test/example.html
+
+.PHONY: clean example

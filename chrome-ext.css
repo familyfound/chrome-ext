@@ -1,14 +1,19 @@
 
+#tree-style #FamilyFoundSection a.open-close-button {
+  color: #0051c4;
+}
+
 #FamilyFoundSection .status label {
   padding: 10px 5px;
 }
 
 #FamilyFoundSection ul.todos {
   list-style: none;
+  margin: 0;
 }
 
 #FamilyFoundSection label.type {
-  margin-right: 5px;
+  margin-right: 20px;
   font-style: italic;
   color: black;
 }
@@ -22,6 +27,7 @@
   display: inline-block;
 }
 
+#FamilyFoundSection li.done label,
 #FamilyFoundSection li.done {
   font-style: italic;
   color: #aaa;
@@ -31,8 +37,21 @@
   float: right;
 }
 
+#FamilyFoundSection li.todo {
+  padding: 5px 0 2px 10px;
+  border-radius: 5px;
+}
+
+#FamilyFoundSection li.todo:hover {
+  background-color: #eee;
+}
+
 #FamilyFoundSection li.todo button.delete {
   visibility: hidden;
+}
+
+#FamilyFoundSection li.todo label.watch {
+  padding-right: 10px;
 }
 
 #FamilyFoundSection li.todo:hover button.delete {
@@ -40,12 +59,59 @@
 }
 
 #FamilyFoundSection button.delete {
-  border-radius: 6px;
-  border: 1px solid #999;
-  background-color: #fff;
-  padding: 2px;
-  height: 18px;
+  border: none;
+  background-color: transparent;
+  padding: 11px;
   line-height: 0px;
-  font-weight: bold;
   display: inline-block;
+}
+
+#FamilyFoundSection .status .status-indicator {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  border-radius: 10px;
+  margin-bottom: -7px;
+  margin-right: 10px;
+}
+
+#FamilyFoundSection .status .status-indicator {
+  background-color: rgb(255, 200, 233);
+}
+
+#FamilyFoundSection .status .status-indicator.clean {
+  background-color: rgb(150, 230, 255);
+}
+
+#FamilyFoundSection .status .status-indicator.complete {
+  background-color: rgb(115, 255, 176);
+}
+
+
+#FamilyFoundSection .status label input {
+  margin-top: -4px;
+}
+
+#FamilyFoundSection .status label span {
+  margin-left: 6px;
+}
+
+#FamilyFoundSection form.todo-form {
+  margin-bottom: 5px;
+}
+
+#FamilyFoundSection form.todo-form select {
+  width: 160px;
+}
+
+#FamilyFoundSection form.todo-form input.new-todo {
+  width: 530px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  box-sizing: inherit;
+}
+
+#FamilyFoundSection form.todo-form button {
+  margin-bottom: 11px;
+  margin-left: 5px;
 }

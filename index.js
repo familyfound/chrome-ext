@@ -50,10 +50,21 @@ var todoTypes = ['General', 'Find Record', 'Resolve Duplicates', 'Find Children'
 
 angular.module('familyfound', [])
 
-  .factory('ffApi', function () {
+  .factory('authorize', function () {
+    var sessionid = null;
+    var cookie = [].concat(document.cookie.split('; ')
+                   .map(function (m) { return m.split('='); }))
+                   .reduce(function (rest, one) { rest[one[0]] = decodeURIComponent(one[1]); return rest; });
+    return function (req) {
+      req.set('Authorization', 'Bearer ' + cookie.fssessionid);
+      return req;
+    };
+  })
+
+  .factory('ffApi', function (authorize) {
     return function (name, options, next) {
       var url = homepage + 'api/' + name;
-      var req = request.post(url);
+      var req = authorize(request.post(url));
       if (options) req.send(options);
       req.set('Accept', 'application/json')
         .end(function (err, res) {
@@ -151,9 +162,9 @@ angular.module('familyfound', [])
     };
   })
 
-  .factory('person', function () {
+  .factory('person', function (authorize) {
     return function (personId, next) {
-      request.get(homepage + 'api/person/' + personId)
+      authorize(request.get(homepage + 'api/person/' + personId))
         .end(function (err, data) {
           if (err) return console.error('failed to get person', personId, err);
           return next(data.body);

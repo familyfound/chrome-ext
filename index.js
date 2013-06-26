@@ -14,7 +14,7 @@ function tpldiv(template) {
   return div.firstElementChild;
 }
 
-function inject(personId, app) {
+function inject(personId) {
   if (document.getElementById('FamilyFoundSection')) {
     return;
   }
@@ -35,7 +35,7 @@ function hashChange() {
     setTimeout(function () {
       var items = parseArgs(location.hash.slice(1));
       if (!items.person) return;
-      inject(items.person, details);
+      inject(items.person);
     }, 100);
   }
 }

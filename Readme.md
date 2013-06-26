@@ -3,15 +3,26 @@
 
   The Chrome extension for FamilyFound
 
-## Installation
+## Testing
 
-  Install with [component(1)](http://component.io):
+Not quite yet
 
-    $ component install familyfound/chrome-ext
+## Example page
 
-## API
+    $ make example
 
+or run `make build` and then open `test/example.html` in a browser.
 
+## Building
+
+    $ make
+
+The `/ext` folder is ready to be loaded by chrome as an unpacked extension.
+Zip it up, and you can upload it to the chrome web store.
+
+## Built extension files
+
+See the `build` branch for binaries.
 
 ## License
 

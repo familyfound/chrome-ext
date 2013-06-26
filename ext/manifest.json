@@ -10,6 +10,7 @@
     "128": "icons/icon128.png"
   },
   "default_locale": "en",
+  "options_page": "src/options_custom/index.html",
   "permissions": [
     "tabs",
     "https://familysearch.org/*",

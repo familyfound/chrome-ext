@@ -1,3 +1,5 @@
 {
-  "name": "FamilyFound"
+  "name": {
+    "message": "FamilyFound"
+  }
 }

@@ -19,5 +19,5 @@
         select.todo-type(ng-model='todoType', ng-options='value for value in todoTypes')
         input.new-todo(placeholder='Describe your todo', ng-model='todoDescription', type='text')
         button.btn.btn-primary(type='submit') Add
-      ul.todos
-        li.todo(ng-repeat="todo in todos", ng-class="{done: todo.done}", data-todo="todo")
+      .todos
+        .todo(ng-repeat="todo in todos", data-todo="todo")

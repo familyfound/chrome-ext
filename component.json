@@ -10,7 +10,8 @@
     "jabapyth/angularjs": "*",
     "visionmedia/superagent": "*",
     "familyfound/ffapi": "*",
-    "familyfound/ng-bootstrap": "*"
+    "familyfound/ng-bootstrap": "*",
+    "notablemind/settings": "*"
   },
   "development": {
     "familyfound/domlog": "*"

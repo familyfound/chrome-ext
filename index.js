@@ -5,6 +5,7 @@ var angular = require('angularjs')
   , todo = require('todo')
   , ffapi = require('ffapi')
   , bootstrap = require('ng-bootstrap')
+  , settings = require('settings')
 
   , template = require('./template');
 
@@ -39,6 +40,8 @@ function hashChange() {
     }, 100);
   }
 }
+
+settings.set('ffapi:main.ffhome', 'https://familyfound.herokuapp.com/');
 
 var todoTypes = ['General', 'Find Record', 'Resolve Duplicates', 'Find Children'];
 

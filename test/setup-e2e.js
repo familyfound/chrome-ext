@@ -7,7 +7,7 @@ var angular = require('angularjs')
 log.init();
 
 angular.module('test', ['familyfound'])
-  .factory('person', function () {
+  .factory('ffperson', function () {
     return function (personId, next) {
       setTimeout(function() {
         return next({
@@ -31,7 +31,7 @@ angular.module('test', ['familyfound'])
       }, 0);
     };
   })
-  .factory('ffApi', function () {
+  .factory('ffapi', function () {
     return function (name, params, next) {
       log('call made', name, params, next);
       if (name == 'todos/add') {

@@ -3,29 +3,25 @@ var angular = require('angularjs')
   , request = require('superagent')
   , promise = require('promise')
   , todo = require('todo')
+  , ffapi = require('ffapi')
+  , bootstrap = require('ng-bootstrap')
 
   , template = require('./template');
 
-function inject(personId, parentDiv, app) {
-  var details = document.querySelector('#ancestorPage .details-content')
-    , div = document.createElement('div');
-  if ((!details && !parentDiv) || document.getElementById('FamilyFoundSection')) {
-    // no need to inject
+function tpldiv(template) {
+  var div = document.createElement('div');
+  div.innerHTML = template;
+  return div.firstElementChild;
+}
+
+function inject(personId, app) {
+  if (document.getElementById('FamilyFoundSection')) {
     return;
   }
-  div.innerHTML = template;
-  div = div.firstElementChild;
-  if (parentDiv) {
-    if (parentDiv.children.length) {
-      parentDiv.insertBefore(div, parentDiv.children[0]);
-    } else {
-      parentDiv.appendChild(div);
-    }
-  } else {
-    details.insertBefore(div, details.querySelector('#LifeSketchVitalSection'));
-  }
+  var div = tpldiv(template)
+    , parentDiv = document.querySelector('#ancestorPage .details-content')
   div.querySelector('#FamilyFound').setAttribute('data-person-id', personId);
-  angular.bootstrap(div, [app || 'familyfound']);
+  bootstrap(div, parentDiv, 'familyfound', parentDiv.querySelector('#LifeSketchVitalSection'));
 }
 
 function parseArgs(args) {
@@ -39,48 +35,22 @@ function hashChange() {
     setTimeout(function () {
       var items = parseArgs(location.hash.slice(1));
       if (!items.person) return;
-      inject(items.person);
+      inject(items.person, details);
     }, 100);
   }
 }
 
-var homepage = 'https://familyfound.herokuapp.com/';
-
 var todoTypes = ['General', 'Find Record', 'Resolve Duplicates', 'Find Children'];
 
-angular.module('familyfound', ['todo'])
+angular.module('familyfound', ['todo', 'ffapi'])
 
-  .factory('authorize', function () {
-    var sessionid = null;
-    var cookie = [].concat(document.cookie.split('; ')
-                   .map(function (m) { return m.split('='); }))
-                   .reduce(function (rest, one) { rest[one[0]] = decodeURIComponent(one[1]); return rest; });
-    return function (req) {
-      req.set('Authorization', 'Bearer ' + cookie.fssessionid);
-      return req;
-    };
-  })
-
-  .factory('ffApi', function (authorize) {
-    return function (name, options, next) {
-      var url = homepage + 'api/' + name;
-      var req = authorize(request.post(url));
-      if (options) req.send(options);
-      req.set('Accept', 'application/json')
-        .end(function (err, res) {
-          if (err) { return console.error('failed in ff api', url, options, err); }
-          next && next(res.body);
-        });
-    };
-  })
-
-  .controller('FamilyFoundCtrl', function ($scope, person, ffApi, $attrs) {
+  .controller('FamilyFoundCtrl', function ($scope, $attrs, ffperson, ffapi) {
     $scope.personId = $attrs.personId;
     window.addEventListener('hashchange', function () {
       var params = parseArgs(location.hash.slice(1));
       if (params.person !== $scope.personId) {
         $scope.personId = params.person;
-        person($scope.personId, function (person) {
+        ffperson($scope.personId, function (person) {
           $scope.todos = person.todos;
           $scope.status = person.status;
           $scope.$digest();
@@ -91,14 +61,14 @@ angular.module('familyfound', ['todo'])
     $scope.todoTypes = todoTypes;
     $scope.todoDescription = '';
     $scope.status = null;
-    person($attrs.personId, function (person) {
+    ffperson($attrs.personId, function (person) {
       $scope.todos = person.todos;
       $scope.status = person.status;
       $scope.$digest();
     });
     $scope.$watch('status', function (value, old) {
       if (value === old || !old) return;
-      ffApi('person/status', {status: value, id: $scope.personId});
+      ffapi('person/status', {status: value, id: $scope.personId});
     });
     $scope.removeTodo = function (todo) {
       var i = $scope.todos.indexOf(todo);
@@ -107,7 +77,7 @@ angular.module('familyfound', ['todo'])
         return;
       }
       $scope.todos.splice(i, 1);
-      ffApi('todos/remove', {id: todo._id});
+      ffapi('todos/remove', {id: todo._id});
       $scope.$digest();
     };
     $scope.addTodo = function () {
@@ -121,23 +91,13 @@ angular.module('familyfound', ['todo'])
       };
       $scope.todoType = todoTypes[0];
       $scope.todoDescription = '';
-      ffApi('todos/add', todo, function (data) {
+      ffapi('todos/add', todo, function (data) {
         todo._id = data.id;
         todo.watching = true;
         todo.owned = true;
         $scope.todos.push(todo);
         $scope.$digest();
       });
-    };
-  })
-
-  .factory('person', function (authorize) {
-    return function (personId, next) {
-      authorize(request.get(homepage + 'api/person/' + personId))
-        .end(function (err, data) {
-          if (err) return console.error('failed to get person', personId, err);
-          return next(data.body);
-        });
     };
   });
 

@@ -38,7 +38,18 @@
     </div>
     </div>
     <script>
-chromeExt.inject('KWX-a23', document.getElementById('ang'), 'test');
+      function tpldiv(template) {
+        var div = document.createElement('div');
+        div.innerHTML = template;
+        return div.firstElementChild;
+      }
+      var bootstrap = require('ng-bootstrap')
+        , template = require('chrome-ext/template')
+        , div = tpldiv(template);
+
+      div.querySelector('#FamilyFound').setAttribute('data-person-id', 'KWZ-23E');
+
+      bootstrap.append(div, '#ang', 'test');
     </script>
   </body>
 </html>

@@ -8,7 +8,9 @@
     "familyfound/promise": "*",
     "familyfound/todo": "*",
     "jabapyth/angularjs": "*",
-    "visionmedia/superagent": "*"
+    "visionmedia/superagent": "*",
+    "familyfound/ffapi": "*",
+    "familyfound/ng-bootstrap": "*"
   },
   "development": {
     "familyfound/domlog": "*"

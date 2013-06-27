@@ -54,7 +54,6 @@ var loadPeople = function (get, base, scope, gens) {
   base.hideParents = false;
   if (base.fatherId) {
     get(base.fatherId, function (data, cached) {
-        console.log('got person', data);
         base.father = data;
         data.mainChild = base;
         loadPeople(get, base.father, scope, gens - 1);
@@ -63,7 +62,6 @@ var loadPeople = function (get, base, scope, gens) {
   }
   if (base.motherId) {
     get(base.motherId, function (data, cached) {
-        console.log('got person', data);
         base.mother = data;
         data.mainChild = base;
         loadPeople(get, base.mother, scope, gens - 1);
@@ -85,6 +83,13 @@ angular.module('familyfound', ['todo', 'new-todo', 'todo-list', 'fan', 'ffapi'])
           $scope.status = person.status;
           $scope.$digest();
         });
+        $scope.rootPerson = false;
+        ffapi.relation($scope.personId, function (person, cached) {
+          $scope.rootPerson = person;
+          loadPeople(ffapi.relation, person, $scope, 5);
+          if (!cached) $scope.$digest();
+        });
+        $scope.$digest();
       }
     });
     $scope.status = null;
@@ -99,14 +104,19 @@ angular.module('familyfound', ['todo', 'new-todo', 'todo-list', 'fan', 'ffapi'])
     });
     $scope.fanConfig = {
       gens: 6,
-      links: true,
+      links: false,
       width: 240,
       height: 170,
       center: {x: 120, y: 120},
       ringWidth: 20,
       doubleWidth: false,
       tips: true,
-      removeRoot: true
+      removeRoot: true,
+      onNode: function (el, person) {
+        el.on('click', function () {
+          window.location.hash = '#view=ancestor&person=' + person.id;
+        });
+      }
     };
     $scope.rootPerson = false;
     ffapi.relation($attrs.personId, function (person, cached) {

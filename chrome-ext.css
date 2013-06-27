@@ -18,6 +18,10 @@
   right: 5px;
 }
 
+#FamilyFoundSection .fan-chart .arc.person {
+  cursor: pointer;
+}
+
 #tree-style #FamilyFoundSection a.open-close-button {
   color: #0051c4;
 }
@@ -53,7 +57,7 @@
 }
 
 #FamilyFoundSection .status .status-indicator {
-  background-color: rgb(255, 200, 233);
+  background-color: #eee;
 }
 
 #FamilyFoundSection .status .status-indicator.clean {

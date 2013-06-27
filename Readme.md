@@ -3,6 +3,10 @@
 
   The Chrome extension for FamilyFound
 
+## Screenshot
+
+![chrome screenshot](/familyfound/chrome-ext/raw/master/media/chrome_screenshot.jpg)
+
 ## Testing
 
 Not quite yet

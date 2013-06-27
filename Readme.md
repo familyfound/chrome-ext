@@ -5,7 +5,7 @@
 
 ## Screenshot
 
-![chrome screenshot](/familyfound/chrome-ext/raw/master/media/chrome_screenshot.jpg)
+![chrome screenshot](/media/chrome_screenshot.jpg?raw=true)
 
 ## Testing
 

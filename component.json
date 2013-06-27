@@ -11,10 +11,14 @@
     "visionmedia/superagent": "*",
     "familyfound/ffapi": "*",
     "familyfound/ng-bootstrap": "*",
-    "notablemind/settings": "*"
+    "notablemind/settings": "*",
+    "familyfound/new-todo": "*",
+    "familyfound/todo-list": "*",
+    "familyfound/fan": "*"
   },
   "development": {
-    "familyfound/domlog": "*"
+    "familyfound/domlog": "*",
+    "simov/deep-copy": "*"
   },
   "license": "MIT",
   "main": "index.js",

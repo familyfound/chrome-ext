@@ -1,23 +1,22 @@
 #FamilyFoundSection.rounded-section.openable
   .section-wrap
-    h4.gadget-title Family Found Research
+    h4.gadget-title FamilyFound
     .open-close-control
       a.open-close-button(href='https://familyfound.herokuapp.com', target='_blank') View Dashboard
     #FamilyFound.gadget.familyFound(ng-controller='FamilyFoundCtrl')
-      .status.btn-group(data-toggle="buttons-radio")
-        .status-indicator(ng-class='status')
-        label
-          input(type="radio", value="working", ng-model="status")
-          span Working
-        label
-          input(type="radio", value="clean", ng-model="status")
-          span Clean
-        label
-          input(type="radio", value="complete", ng-model="status")
-          span Complete
-      form.todo-form(ng-submit="addTodo()")
-        select.todo-type(ng-model='todoType', ng-options='value for value in todoTypes')
-        input.new-todo(placeholder='Describe your todo', ng-model='todoDescription', type='text')
-        button.btn.btn-primary(type='submit') Add
-      .todos
-        .todo(ng-repeat="todo in todos", data-todo="todo")
+      .left-side
+        .status.btn-group(data-toggle="buttons-radio")
+          .status-indicator(ng-class='status')
+          label
+            input(type="radio", value="working", ng-model="status")
+            span Working
+          label
+            input(type="radio", value="clean", ng-model="status")
+            span Clean
+          label
+            input(type="radio", value="complete", ng-model="status")
+            span Complete
+        div(data-new-todo="todos")
+        div(data-todo-list="todos")
+      .fan-chart
+        div(data-fan="rootPerson", data-config='fanConfig')

@@ -1,4 +1,23 @@
 
+#FamilyFoundSection #FamilyFound {
+  position: relative;
+  min-height: 190px;
+}
+
+#FamilyFoundSection .left-side {
+  width: 550px;
+}
+
+#FamilyFoundSection .left-side input.new-todo {
+  width: 285px;
+}
+
+#FamilyFoundSection .fan-chart {
+  position: absolute;
+  top: 20px;
+  right: 5px;
+}
+
 #tree-style #FamilyFoundSection a.open-close-button {
   color: #0051c4;
 }
@@ -7,9 +26,9 @@
   padding: 10px 5px;
 }
 
-#FamilyFoundSection ul.todos {
-  list-style: none;
-  margin: 0;
+#FamilyFoundSection svg .radial {
+  stroke-width: 2px;
+  stroke: #aaa;
 }
 
 #FamilyFoundSection label {
@@ -52,24 +71,4 @@
 
 #FamilyFoundSection .status label span {
   margin-left: 6px;
-}
-
-#FamilyFoundSection form.todo-form {
-  margin-bottom: 5px;
-}
-
-#FamilyFoundSection form.todo-form select {
-  width: 160px;
-}
-
-#FamilyFoundSection form.todo-form input.new-todo {
-  width: 530px;
-  padding: 5px 10px;
-  margin-left: 10px;
-  box-sizing: inherit;
-}
-
-#FamilyFoundSection form.todo-form button {
-  margin-bottom: 11px;
-  margin-left: 5px;
 }

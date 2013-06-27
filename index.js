@@ -3,6 +3,9 @@ var angular = require('angularjs')
   , request = require('superagent')
   , promise = require('promise')
   , todo = require('todo')
+  , newTodo = require('new-todo')
+  , todoList = require('todo-list')
+  , fan = require('fan')
   , ffapi = require('ffapi')
   , bootstrap = require('ng-bootstrap')
   , settings = require('settings')
@@ -43,9 +46,33 @@ function hashChange() {
 
 settings.set('ffapi:main.ffhome', 'https://familyfound.herokuapp.com/');
 
-var todoTypes = ['General', 'Find Record', 'Resolve Duplicates', 'Find Children'];
+var loadPeople = function (get, base, scope, gens) {
+  if (gens <= 0) {
+    base.hideParents = true;
+    return null;
+  }
+  base.hideParents = false;
+  if (base.fatherId) {
+    get(base.fatherId, function (data, cached) {
+        console.log('got person', data);
+        base.father = data;
+        data.mainChild = base;
+        loadPeople(get, base.father, scope, gens - 1);
+        if (!cached) scope.$digest();
+      });
+  }
+  if (base.motherId) {
+    get(base.motherId, function (data, cached) {
+        console.log('got person', data);
+        base.mother = data;
+        data.mainChild = base;
+        loadPeople(get, base.mother, scope, gens - 1);
+        if (!cached) scope.$digest();
+      });
+  }
+};
 
-angular.module('familyfound', ['todo', 'ffapi'])
+angular.module('familyfound', ['todo', 'new-todo', 'todo-list', 'fan', 'ffapi'])
 
   .controller('FamilyFoundCtrl', function ($scope, $attrs, ffperson, ffapi) {
     $scope.personId = $attrs.personId;
@@ -60,9 +87,6 @@ angular.module('familyfound', ['todo', 'ffapi'])
         });
       }
     });
-    $scope.todoType = todoTypes[0];
-    $scope.todoTypes = todoTypes;
-    $scope.todoDescription = '';
     $scope.status = null;
     ffperson($attrs.personId, function (person) {
       $scope.todos = person.todos;
@@ -73,35 +97,23 @@ angular.module('familyfound', ['todo', 'ffapi'])
       if (value === old || !old) return;
       ffapi('person/status', {status: value, id: $scope.personId});
     });
-    $scope.removeTodo = function (todo) {
-      var i = $scope.todos.indexOf(todo);
-      if (i === -1) {
-        console.warn('Todo not found', todo, $scope.todos);
-        return;
-      }
-      $scope.todos.splice(i, 1);
-      ffapi('todos/remove', {id: todo._id});
-      $scope.$digest();
+    $scope.fanConfig = {
+      gens: 6,
+      links: true,
+      width: 240,
+      height: 170,
+      center: {x: 120, y: 120},
+      ringWidth: 20,
+      doubleWidth: false,
+      tips: true,
+      removeRoot: true
     };
-    $scope.addTodo = function () {
-      // TODO: should I limit this? If I've got really good types, then not
-      // if (!$scope.todoDescription) return;
-      var todo = {
-        completed: false,
-        type: $scope.todoType,
-        title: $scope.todoDescription,
-        person: $scope.personId
-      };
-      $scope.todoType = todoTypes[0];
-      $scope.todoDescription = '';
-      ffapi('todos/add', todo, function (data) {
-        todo._id = data.id;
-        todo.watching = true;
-        todo.owned = true;
-        $scope.todos.push(todo);
-        $scope.$digest();
-      });
-    };
+    $scope.rootPerson = false;
+    ffapi.relation($attrs.personId, function (person, cached) {
+      $scope.rootPerson = person;
+      loadPeople(ffapi.relation, person, $scope, 5);
+      if (!cached) $scope.$digest();
+    });
   });
 
 module.exports = {

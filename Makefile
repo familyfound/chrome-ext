@@ -2,6 +2,10 @@
 default: build
 	@:
 
+zip: build
+	@rm -rf familyfound.zip
+	@zip -r familyfound.zip ext
+
 build: index.js chrome-ext.css template.js
 	@echo "Component"
 	@component build --dev

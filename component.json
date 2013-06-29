@@ -5,11 +5,10 @@
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
-    "familyfound/todolist-panel": "*",
     "jabapyth/angularjs": "*",
-    "notablemind/angular-settings": "*",
     "notablemind/settings": "*",
-    "familyfound/ng-bootstrap": "*"
+    "familyfound/todolist-panel": "*",
+    "familyfound/chrome-storage": "*"
   },
   "development": {
     "familyfound/domlog": "*",

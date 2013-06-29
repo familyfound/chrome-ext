@@ -6,16 +6,13 @@ zip: build
 	@rm -rf ext.zip
 	@zip -r ext.zip ext
 
-build: index.js chrome-ext.css template.js
+build-dev: index.js
 	@echo "Component"
-	@component build --dev
-	cp build/build.js ext/src/inject/inject.js && cp build/build.css ext/src/inject/inject.css
+	@component build -s familyfound -o ext/src/inject -n inject --dev
 
-template.html: template.jade
-	@jade -P $<
-
-template.js: template.html
-	@component convert $<
+build: index.js
+	@echo "Component"
+	@component build -s familyfound -o ext/src/inject -n inject
 
 components: component.json
 	@component install --dev
@@ -32,7 +29,4 @@ ifeq ($(UNAME_S),Darwin)
 		open := open
 endif
 
-example:
-	@${open} test/example.html
-
-.PHONY: clean example
+.PHONY: clean

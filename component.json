@@ -5,16 +5,11 @@
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
-    "familyfound/promise": "*",
-    "familyfound/todo": "*",
+    "familyfound/todolist-panel": "*",
     "jabapyth/angularjs": "*",
-    "visionmedia/superagent": "*",
-    "familyfound/ffapi": "*",
-    "familyfound/ng-bootstrap": "*",
+    "notablemind/angular-settings": "*",
     "notablemind/settings": "*",
-    "familyfound/new-todo": "*",
-    "familyfound/todo-list": "*",
-    "familyfound/fan": "*"
+    "familyfound/ng-bootstrap": "*"
   },
   "development": {
     "familyfound/domlog": "*",
@@ -23,10 +18,8 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": [
-    "index.js",
-    "template.js"
+    "index.js"
   ],
   "styles": [
-    "chrome-ext.css"
   ]
 }

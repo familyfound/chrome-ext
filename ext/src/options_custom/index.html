@@ -6,13 +6,16 @@
     
     <!-- Stylesheets -->
     <link id="favicon" rel="icon" href="">
-    <link rel="stylesheet" href="../inject/inject.css">
-    <script src="../inject/inject.js"></script>
+    <link rel="stylesheet" href="settings.css">
+    <script src="settings.js"></script>
     
   </head>
   <body class="no-select">
-    <div data-ng-controller="Settings">
-      <div data-settings-manager="familyfound" data-chrome-storage="default">
+    <div class="container">
+      <h1>FamilyFound Settings</h2>
+      <div class="settings-manager"
+           data-settings-manager="familyfound"
+           data-settings-chrome-storage="default">
       </div>
     </div>
   </body>

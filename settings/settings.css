@@ -1,0 +1,61 @@
+
+body {
+  font-family: Verdana, Helvetica, sans-serif;
+}
+
+form[name="setting-form"] {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+form[name="setting-form"] select,
+form[name="setting-form"] input {
+  margin: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 50px auto;
+  border: 1px solid #aaa;
+  box-shadow: 0 0 5px black;
+  padding: 20px;
+}
+
+h1 {
+  margin: 0 0 20px;
+}
+
+.sidebar {
+  background-color: #ddd;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar li {
+  display: inline;
+  list-style: none;
+}
+
+.sidebar li a {
+  display: inline-block;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.sidebar li.selected a {
+  cursor: default;
+  background-color: #eee;
+}
+
+.page > .title {
+  display: none;
+}
+
+table {
+  width: 100%;
+}

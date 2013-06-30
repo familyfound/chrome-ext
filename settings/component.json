@@ -1,24 +1,24 @@
 {
-  "name": "chrome-ext",
-  "repo": "familyfound/chrome-ext",
-  "description": "The Chrome extension for FamilyFound",
+  "name": "settings-page",
+  "description": "Settings part of the chrome extension",
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
     "jabapyth/angularjs": "*",
     "notablemind/settings": "*",
+    "CamShaft/bootstrap-buttons": "*",
+    "CamShaft/bootstrap-forms": "*",
+    "CamShaft/bootstrap-tables": "*",
     "familyfound/todolist-panel": "*",
     "familyfound/settings-chrome-storage": "*"
   },
-  "development": {
-    "familyfound/domlog": "*",
-    "simov/deep-copy": "*"
-  },
+  "development": {},
   "license": "MIT",
   "main": "index.js",
   "scripts": [
     "index.js"
   ],
   "styles": [
+    "settings.css"
   ]
 }

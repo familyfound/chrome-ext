@@ -6,13 +6,20 @@ zip: build
 	@rm -rf ext.zip
 	@zip -r ext.zip ext
 
-build-dev: index.js
+build: build-main build-settings
+
+build-dev: build-main-dev build-settings
+
+build-main-dev: index.js
 	@echo "Component"
 	@component build -s familyfound -o ext/src/inject -n inject --dev
 
-build: index.js
+build-main: index.js
 	@echo "Component"
 	@component build -s familyfound -o ext/src/inject -n inject
+
+build-settings: settings/index.js settings/settings.css
+	@cd settings && component build -s settings -o ../ext/src/options_custom/ -n settings
 
 components: component.json
 	@component install --dev

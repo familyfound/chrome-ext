@@ -6,6 +6,7 @@
   "dependencies": {
     "jabapyth/angularjs": "*",
     "notablemind/settings": "*",
+    "notablemind/angular-settings": "*",
     "CamShaft/bootstrap-buttons": "*",
     "CamShaft/bootstrap-forms": "*",
     "CamShaft/bootstrap-tables": "*",

@@ -13,6 +13,10 @@ form[name="setting-form"] input {
   margin: 0;
 }
 
+button.clear-btn {
+  float: right;
+}
+
 .container {
   max-width: 900px;
   margin: 50px auto;

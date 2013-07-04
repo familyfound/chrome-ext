@@ -25,7 +25,7 @@ components: component.json
 	@component install --dev
 
 clean:
-	rm -fr build components template.js
+	rm -fr ext/src/options_custon/settings.* ext/src/inject/inject.* components template.js
 
 # open browser correctly in mac or linux
 UNAME_S := $(shell uname -s)

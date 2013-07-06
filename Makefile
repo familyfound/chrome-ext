@@ -1,5 +1,5 @@
 
-default: build
+default: build-dev
 	@:
 
 zip: build

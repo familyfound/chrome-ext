@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
-    "jabapyth/angularjs": "*",
+    "jaredly/angularjs": "*",
     "notablemind/settings": "*",
     "familyfound/todolist-panel": "*",
     "familyfound/settings-chrome-storage": "*"

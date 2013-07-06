@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
-    "jabapyth/angularjs": "*",
+    "jaredly/angularjs": "*",
     "notablemind/settings": "*",
     "notablemind/angular-settings": "*",
     "CamShaft/bootstrap-buttons": "*",
